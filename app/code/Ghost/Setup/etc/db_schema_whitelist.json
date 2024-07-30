@@ -1,0 +1,52 @@
+{
+    "director": {
+        "column": {
+            "director_id": true,
+            "name": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "actor": {
+        "column": {
+            "actor_id": true,
+            "name": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "movie_actor": {
+        "column": {
+            "movie_actor_id": true,
+            "actor_id": true,
+            "director_id": true,
+            "movie_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MOVIE_ACTOR_ACTOR_ID_ACTOR_ACTOR_ID": true,
+            "MOVIE_ACTOR_DIRECTOR_ID_DIRECTOR_DIRECTOR_ID": true,
+            "MOVIE_ACTOR_MOVIE_ID_MOVIE_MOVIE_ID": true
+        }
+    },
+    "movie": {
+        "column": {
+            "movie_id": true,
+            "name": true,
+            "description": true,
+            "rating": true,
+            "director_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "MOVIE_MOVIE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "MOVIE_DIRECTOR_ID_DIRECTOR_DIRECTOR_ID": true
+        }
+    }
+}

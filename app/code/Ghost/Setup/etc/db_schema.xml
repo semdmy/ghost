@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="director" comment="Director" engine="innodb" resource="default">
+        <column xsi:type="int" name="director_id" unsigned="true" nullable="false" identity="true"
+                comment="Director ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="director_id"/>
+        </constraint>
+    </table>
+    <table name="actor" comment="Actor" engine="innodb" resource="default">
+        <column xsi:type="int" name="actor_id" unsigned="true" nullable="false" identity="true"
+                comment="Actor ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="actor_id"/>
+        </constraint>
+    </table>
+    <table name="movie_actor" engine="innodb" resource="default" comment="Movie Actor">
+        <column xsi:type="int" name="movie_actor_id" unsigned="true" nullable="false" identity="true"
+                comment="Movie Actor ID"/>
+        <column xsi:type="int" name="actor_id" unsigned="true" nullable="false" comment="Actor ID"/>
+        <column xsi:type="int" name="movie_id" unsigned="true" nullable="false" comment="Movie ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="movie_actor_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="MOVIE_ACTOR_MOVIE_ACTOR_ID_ACTOR_ACTOR_ID"
+                    table="movie_actor"
+                    column="actor_id"
+                    referenceTable="actor"
+                    referenceColumn="actor_id"
+                    onDelete="NO ACTION"/>
+        <constraint xsi:type="foreign"
+                    referenceId="MOVIE_ACTOR_MOVIE_DIRECTOR_ID_DIRECTOR_DIRECTOR_ID"
+                    table="movie_actor"
+                    column="movie_id"
+                    referenceTable="movie"
+                    referenceColumn="movie_id"
+                    onDelete="NO ACTION"/>
+    </table>
+    <table name="movie" resource="default" engine="innodb" comment="Movie">
+        <column xsi:type="int" name="movie_id" unsigned="true" nullable="false" identity="true" comment="Movie ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" comment="Name"/>
+        <column xsi:type="varchar" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="smallint" name="rating" unsigned="true" nullable="true" comment="Rating"/>
+        <column xsi:type="int" name="director_id" unsigned="true" nullable="false" comment="Director ID"/>
+        <column xsi:type="date" name="created_at" nullable="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="movie_id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="MOVIE_MOVIE_ID_DIRECTOR_DIRECTOR_ID"
+                    table="movie"
+                    column="director_id"
+                    referenceTable="director"
+                    referenceColumn="director_id"
+                    onDelete="NO ACTION"/>
+        <index referenceId="MOVIE_MOVIE_ID" indexType="btree">
+            <column name="movie_id"/>
+        </index>
+    </table>
+</schema>

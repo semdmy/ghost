@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Ghost\Movie\Api\Data\MovieInterface" type="Ghost\Movie\Model\Movie"/>
+    <preference for="Ghost\Movie\Api\Data\MovieSearchResultsInterface" type="Ghost\Movie\Model\MovieSearchResults"/>
+    <preference for="Ghost\Movie\Api\MovieRepositoryInterface" type="Ghost\Movie\Model\MovieRepository"/>
+</config>

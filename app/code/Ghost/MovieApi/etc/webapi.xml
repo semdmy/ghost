@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/ghost-movie" method="POST">
+        <service class="Ghost\Movie\Api\MovieRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/ghost-movie/:movieId" method="PUT">
+        <service class="Ghost\Movie\Api\MovieRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/ghost-movie/:movieId" method="GET">
+        <service class="Ghost\Movie\Api\MovieRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/ghost-movie/:movieId" method="DELETE">
+        <service class="Ghost\Movie\Api\MovieRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/ghost-movie/search" method="GET">
+        <service class="Ghost\Movie\Api\MovieRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>
