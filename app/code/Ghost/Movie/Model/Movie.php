@@ -167,4 +167,21 @@ class Movie extends AbstractModel implements MovieInterface, IdentityInterface
         }
         return parent::beforeSave();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getActorName(): string
+    {
+        return (string)$this->getData('actor_name');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function setActorName(string $name): MovieInterface
+    {
+        $this->setData('actor_name', $name);
+        return $this;
+    }
 }

@@ -11,6 +11,9 @@
                 <item name="ghost_console_movie_collection_test" xsi:type="object">
                     Ghost\Console\Console\Command\MovieCollectionTest
                 </item>
+                <item name="console_command_resource_test" xsi:type="object">
+                    Ghost\Console\Console\Command\ResourceTest
+                </item>
             </argument>
         </arguments>
     </type>

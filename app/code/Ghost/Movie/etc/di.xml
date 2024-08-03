@@ -4,4 +4,22 @@
     <preference for="Ghost\Movie\Api\Data\MovieInterface" type="Ghost\Movie\Model\Movie"/>
     <preference for="Ghost\Movie\Api\Data\MovieSearchResultsInterface" type="Ghost\Movie\Model\MovieSearchResults"/>
     <preference for="Ghost\Movie\Api\MovieRepositoryInterface" type="Ghost\Movie\Model\MovieRepository"/>
+    <virtualType name="Ghost\Movie\Model\CollectionProcessor"
+                 type="Magento\Framework\Api\SearchCriteria\CollectionProcessor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="actor_processor" xsi:type="object">
+                    Ghost\Movie\Model\Api\SearchCriteria\JoinProcessor\Actor
+                </item>
+                <item name="director_processor" xsi:type="object">
+                    Ghost\Movie\Model\Api\SearchCriteria\JoinProcessor\Director
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Ghost\Movie\Model\MovieRepository">
+        <arguments>
+            <argument name="collectionProcessor" xsi:type="object">Ghost\Movie\Model\CollectionProcessor</argument>
+        </arguments>
+    </type>
 </config>

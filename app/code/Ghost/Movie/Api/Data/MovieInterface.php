@@ -90,4 +90,15 @@ interface MovieInterface
      * @return MovieInterface
      */
     public function setUpdatedAt(string $updatedAt): MovieInterface;
+
+    /**
+     * @return string
+     */
+    public function getActorName(): string;
+
+    /**
+     * @param string $name
+     * @return MovieInterface
+     */
+    public function setActorName(string $name): MovieInterface;
 }

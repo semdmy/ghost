@@ -39,21 +39,11 @@ class MovieCollectionTest extends Command
     {
         /** @var \Ghost\Movie\Model\ResourceModel\Movie\Collection $movies */
         $movies = $this->movieCollectionFactory->create();
-        $output->writeln(print_r($movies->getSelect()->__toString(), true));
-        $output->writeln('------------------');
-        $movies->addFieldToSelect([
-            'name',
-            'description'
-        ]);
-        $output->writeln(print_r($movies->getSelect()->__toString(), true));
-        $output->writeln('------------------');
-        $movies->joinDirectors();
-        $output->writeln(print_r($movies->getSelect()->__toString(), true));
-        $output->writeln('------------------');
-        $movies->joinActors();
-        $output->writeln(print_r($movies->getSelect()->__toString(), true));
-        $output->writeln('------------------');
-        $output->writeln(print_r($movies->getData(), true));
+        $movies->addFieldToSelect('name', 'movie_name')
+            ->addFilter('main_table.name', 'Pokemon')
+            ->joinDirectors()
+            ->joinActors();
+        $output->writeln(print_r($movies->getItems(), true));
         return 0;
     }
 }

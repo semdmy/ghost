@@ -41,14 +41,27 @@ class MovieResourceTest extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $movie = $this->movieFactory->create();
-        $movie->setName('asdsadasdas')
-            ->setDescription('asdf')
-            ->setRating(3)
-            ->setCreatedAt('2001-04-04')
-            ->setUpdatedAt(date('Y-m-d H:i:s'));
-        $this->movieResource->save($movie);
-        $output->writeln(print_r($movie->getData(), true));
+//        $movie = $this->movieFactory->create();
+//        $movie->setName('asdsadasdas')
+//            ->setDescription('asdf')
+//            ->setRating(3)
+//            ->setCreatedAt('2001-04-04')
+//            ->setUpdatedAt(date('Y-m-d H:i:s'));
+//        $this->movieResource->save($movie);
+
+
+        $connection = $this->movieResource->getConnection();
+        $select = $connection->select()
+            ->from(
+                'movie as main_table',
+                ['name as movie_name']
+            )->joinRight(
+                'director',
+                'main_table.director_id = director.director_id',
+                ['name as director_name']
+            );
+
+        $output->writeln(print_r($connection->fetchPairs($select), true));
         return 0;
     }
 }

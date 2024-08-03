@@ -21,8 +21,8 @@ class Collection extends AbstractCollection
         $this->join(
             'director',
             'main_table.director_id = director.director_id',
-            'director.name as director_name'
-        )->getSelect()->columns(['director.name as director_name']);
+            'name as director_name'
+        );
         return $this;
     }
 
@@ -30,13 +30,19 @@ class Collection extends AbstractCollection
     {
         $this->join(
             'movie_actor',
-            'main_table.movie_id = movie_actor.movie_id',
+            'movie_actor.movie_id = main_table.movie_id',
             null
         )->join(
             'actor',
             'movie_actor.actor_id = actor.actor_id',
-            'actor.name as actor_name'
+            'name as actor_name'
         );
+        return $this;
+    }
+
+    public function joinActorData()
+    {
+        $this->joinActors();
         return $this;
     }
 }
